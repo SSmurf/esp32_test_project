@@ -1,18 +1,31 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int externalLedPin = 2;  // GPIO pin for external LED
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(LED_BUILTIN, OUTPUT);  // Set built-in LED pin as output
+  pinMode(externalLedPin, OUTPUT);  // Set external LED pin as output
+  Serial.begin(115200);
+  Serial.println("Hello world!");
+  // digitalWrite(externalLedPin, HIGH);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  Serial.println("Hello world from loop");
+  
+  // Turn both LEDs on
+  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(externalLedPin, HIGH);
+  delay(500);
+  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(externalLedPin, HIGH);
+  delay(500);
+  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(externalLedPin, HIGH);
+  delay(500);
+  
+  // Turn both LEDs off
+  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(externalLedPin, LOW);
+  delay(1000);
 }
